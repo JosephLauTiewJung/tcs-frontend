@@ -36,8 +36,8 @@ const ChatBox = ({chatOnClickHandler}) => {
             const response = await fetchChatResponse(inputValue);
             // Add bot message (assume response.message is the text)
             setMessageHistory(prev => [...prev, { sender: 'bot', text: response.message }]);
-        } catch {
-            setMessageHistory(prev => [...prev, { sender: 'bot', text: 'Error fetching response.' }]);
+        } catch(error) {
+            setMessageHistory(prev => [...prev, { sender: 'bot', text: error.message }]);
         }
         setInputValue("");
     }
